@@ -7,7 +7,7 @@ import uuid
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
-app.config['SQLALCHEMY_ECHO'] = True
+#app.config['SQLALCHEMY_ECHO'] = True
 app.config['JSON_SORT_KEYS'] = False
 db = SQLAlchemy(app)
 FlaskUUID(app)
