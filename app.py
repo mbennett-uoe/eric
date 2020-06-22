@@ -16,7 +16,6 @@ FlaskUUID(app)
 
 class Object(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    #uuid = db.Column(UUID(as_uuid=True), default=uuid.uuid4, unique=True, nullable=False)
     uuid = db.Column(UUIDType(binary=False), default=uuid.uuid4, unique=True, nullable=False)
     type_id = db.Column(db.Integer, db.ForeignKey('object_type.id'), nullable=False)
     type = db.relationship('ObjectType', lazy=False, backref=db.backref('objects', lazy=True))
@@ -120,15 +119,6 @@ def convert_identifier(identifier, desired_type):
                     "url": construct_url(obj.type.url_construct, obj.id),
                     }
         return jsonify(obj_dict)
-
-#x = Object.query.filter(Object.id == 2).join(Object.identifiers).options(contains_eager(Object.identifiers)).filter(Identifier.type_id == 1).first()
-#y = Object.query.options(joinedload('identifiers')).get(1)
-
-# SELECT identifier.id, identifier.object_id, identifier.type_id
-# FROM identifier
-# INNER JOIN identifier_type ON identifier.type_id=identifier_type.id
-# WHERE identifier.object_id = (SELECT identifier.object_id from identifier WHERE identifier.id = 'ADO12345')
-#       AND identifier_type.shortcode = 'ado'
 
 
 if __name__ == '__main__':
