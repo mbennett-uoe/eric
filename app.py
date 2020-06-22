@@ -1,9 +1,8 @@
 from flask import Flask, jsonify, request, redirect, url_for, make_response, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_uuid import FlaskUUID
-from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy_utils import UUIDType
-from sqlalchemy.orm import joinedload, contains_eager
+from sqlalchemy.orm import joinedload
 import uuid
 
 app = Flask(__name__)
